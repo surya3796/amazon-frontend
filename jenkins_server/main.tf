@@ -37,8 +37,8 @@ resource "aws_instance" "ec2_instance" {
     ami = "ami-0fc5d935ebf8bc3bc"
     instance_type = "t2.large"
     key_name = aws_key_pair.my_keypair.id
-    security_groups = [aws_security_group.my_sg.id]
-    user_data = templatefile("./install.sh", {})
+    vpc_security_group_ids = [aws_security_group.my_sg.id]
+    user_data = templatefile("./install_scripts.sh", {})
 
     tags = {
         name = "jenkins-server"
